@@ -1,13 +1,8 @@
-/* in App.css */
 :root {
-  /* Primary brand color */
   --color-primary: #ff7a59;
-  /* Dark text / nav / footer */
   --color-dark: #1a1a1a;
-  /* Light backgrounds */
   --color-bg: #fafafa;
   --color-card: #ffffff;
-  /* Accent greys */
   --color-grey-light: #f0f0f0;
   --color-grey-dark: #555555;
 }
@@ -29,7 +24,6 @@ p {
   color: var(--color-grey-dark);
 }
 
-/* App.css */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -75,13 +69,11 @@ p {
   justify-content: space-between;
 }
 
-/* logo */
 .header__logo {
   color: #fff;
   font-size: 1.25rem;
 }
 
-/* nav (desktop) */
 .header__nav {
   display: flex;
   gap: 2rem;
@@ -106,13 +98,11 @@ p {
   color: var(--color-primary);
 }
 
-/* CTA button */
 .header__cta {
   background: var(--color-primary);
   color: #fff;
 }
 
-/* by default we only show the desktop CTA */
 .header__cta--mobile {
   display: none;
 }
@@ -120,7 +110,6 @@ p {
   display: inline-block;
 }
 
-/* hamburger toggle (hidden desktop) */
 .header__toggle {
   display: none;
   background: none;
@@ -137,7 +126,6 @@ p {
     display: block;
   }
 
-  /* hide desktop nav + CTA */
   .header__nav {
     display: none;
   }
@@ -145,7 +133,6 @@ p {
     display: none;
   }
 
-  /* when menuOpen = true */
   .header__nav.header__nav--open {
     display: flex;
     flex-direction: column;
@@ -164,7 +151,6 @@ p {
     gap: 1rem;
   }
 
-  /* show the CTA inside the open menu */
   .header__cta--mobile {
     display: inline-block;
     margin-top: 0.5rem;
@@ -190,7 +176,6 @@ p {
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
 }
 
-/* landing_components/features.css */
 .features__inner {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -214,7 +199,6 @@ p {
   margin-bottom: 1rem;
 }
 
-/* landing_components/footer.css */
 .footer {
   background: var(--color-dark);
   color: #fff;

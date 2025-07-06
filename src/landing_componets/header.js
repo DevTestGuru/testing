@@ -32,7 +32,6 @@ export default function Header() {
               </li>
             ))}
           </ul>
-          {/* move the CTA into the menu on mobile */}
           <a
             href="#buy"
             className="btn btn--primary header__cta header__cta--mobile"
@@ -42,7 +41,6 @@ export default function Header() {
           </a>
         </nav>
 
-        {/* desktop CTA */}
         <a
           href="#buy"
           className="btn btn--primary header__cta header__cta--desktop"

@@ -1,5 +1,3 @@
-// landing_components/features.js
-import React from "react";
 import {
   MdKeyboardVoice,
   MdPalette,
