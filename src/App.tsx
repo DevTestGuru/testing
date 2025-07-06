@@ -3,17 +3,22 @@ import "./App.css";
 import "./assets/css/globals.css";
 // import "./assets/css/react-slick.css";
 // import "slick-carousel/slick/slick.css";
-import { CssBaseline, ThemeProvider, createTheme } from "@mui/material";
-import { useRoutes } from "react-router-dom";
-import Router from "./routes/Router";
-import theme from "./theme";
+import Header from "./landing_componets/header";
+import Hero from "./landing_componets/hero";
+import Features from "./landing_componets/features";
+import Footer from "./landing_componets/footer";
 
 function App() {
-  const routing = useRoutes(Router);
   return (
-    <ThemeProvider theme={theme}>
-      <div className="App">{routing}</div>
-    </ThemeProvider>
+      <div className="App">
+        {" "}
+        <Header />
+        <main>
+          <Hero />
+          <Features />
+        </main>
+        <Footer />
+      </div>
   );
 }
 
