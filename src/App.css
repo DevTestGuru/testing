@@ -1,4 +1,249 @@
-.App {
+/* in App.css */
+:root {
+  /* Primary brand color */
+  --color-primary: #ff7a59;
+  /* Dark text / nav / footer */
+  --color-dark: #1a1a1a;
+  /* Light backgrounds */
+  --color-bg: #fafafa;
+  --color-card: #ffffff;
+  /* Accent greys */
+  --color-grey-light: #f0f0f0;
+  --color-grey-dark: #555555;
+}
+
+body {
+  font-family: "Montserrat", sans-serif;
+  color: var(--color-dark);
+  background-color: var(--color-bg);
+  line-height: 1.6;
+}
+h1,
+h2,
+h3,
+h4 {
+  font-weight: 600;
+  color: var(--color-dark);
+}
+p {
+  color: var(--color-grey-dark);
+}
+
+/* App.css */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.section {
+  padding: 4rem 0;
+}
+.btn {
+  display: inline-block;
+  text-decoration: none;
+  font-weight: 600;
+  text-transform: uppercase;
+  padding: 0.75rem 1.5rem;
+  border-radius: 4px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.btn--primary {
+  background-color: var(--color-primary);
+  color: #fff;
+}
+.btn--primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.header {
+  background: var(--color-dark);
+  padding: 1rem 0;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* logo */
+.header__logo {
+  color: #fff;
+  font-size: 1.25rem;
+}
+
+/* nav (desktop) */
+.header__nav {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+
+.header__nav ul {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.header__nav a {
+  color: #fff;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.header__nav a:hover {
+  color: var(--color-primary);
+}
+
+/* CTA button */
+.header__cta {
+  background: var(--color-primary);
+  color: #fff;
+}
+
+/* by default we only show the desktop CTA */
+.header__cta--mobile {
+  display: none;
+}
+.header__cta--desktop {
+  display: inline-block;
+}
+
+/* hamburger toggle (hidden desktop) */
+.header__toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+/* ================ MOBILE ================ */
+@media (max-width: 768px) {
+  /* show hamburger */
+  .header__toggle {
+    display: block;
+  }
+
+  /* hide desktop nav + CTA */
+  .header__nav {
+    display: none;
+  }
+  .header__cta--desktop {
+    display: none;
+  }
+
+  /* when menuOpen = true */
+  .header__nav.header__nav--open {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: var(--color-dark);
+    padding: 1rem 0;
+    text-align: center;
+    gap: 1rem;
+  }
+
+  .header__nav.header__nav--open ul {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  /* show the CTA inside the open menu */
+  .header__cta--mobile {
+    display: inline-block;
+    margin-top: 0.5rem;
+  }
+}
+
+.hero__inner {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  align-items: center;
+  gap: 3rem;
+}
+.hero__content h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+.hero__content p {
+  margin-bottom: 1.5rem;
+}
+.hero__image img {
+  width: 100%;
+  border-radius: 8px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+/* landing_components/features.css */
+.features__inner {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 2rem;
+}
+.feature-card {
+  background: var(--color-card);
+  border-radius: 8px;
+  padding: 2rem;
   text-align: center;
-  background-color: #f2f5f5;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.feature-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+.feature-card__icon {
+  font-size: 2rem;
+  color: var(--color-primary);
+  margin-bottom: 1rem;
+}
+
+/* landing_components/footer.css */
+.footer {
+  background: var(--color-dark);
+  color: #fff;
+}
+.footer__inner {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+  padding: 2rem 0;
+}
+.footer__inner a {
+  color: #eee;
+  text-decoration: none;
+}
+.footer__inner h4 {
+  margin-bottom: 0.75rem;
+}
+.social-icons a {
+  margin-right: 0.5rem;
+  font-size: 1.25rem;
+  color: #eee;
+  transition: color 0.2s;
+}
+.social-icons a:hover {
+  color: var(--color-primary);
+}
+.footer__bottom {
+  text-align: center;
+  padding: 1rem 0;
+  font-size: 0.875rem;
+  background: rgba(0, 0, 0, 0.2);
 }
