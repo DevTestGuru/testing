@@ -1,6 +1,7 @@
 import React, { lazy } from "react";
 import { Navigate } from "react-router-dom";
 import Loadable from "../components/loadable/Loadable";
+import ProductLanding from "../views/product_landing/ProductLanding";
 
 const Layout = Loadable(lazy(() => import("../components/layout/Layout")));
 const Dashboard = Loadable(lazy(() => import("../views/dashboard/Dashboard")));
@@ -20,6 +21,7 @@ const Router = [
       { path: "/sell", exact: true, element: <Sell /> },
       { path: "/login", exact: true, element: <Login /> },
       { path: "/auth/404", exact: true, element: <Notfound /> },
+      { path: "/product-landing", exact: true, element: <ProductLanding /> },
       { path: "*", element: <Navigate to="/auth/404" /> }
     ]
   }

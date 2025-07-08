@@ -154,6 +154,23 @@ const Dashboard = () => {
           >
             Exchange
           </Button>
+          <Button
+            variant="contained"
+            onClick={() => navigate("/product-landing")}
+            sx={{
+              backgroundColor: "#00dbe3",
+              borderRadius: "6px",
+              width: "352px",
+              height: "64px",
+              fontSize: "24px",
+              lineHeight: "60px",
+              textTransform: "uppercase",
+              color: "#ffffff",
+              fontWeight: 700,
+            }}
+          >
+            Product Landing Page
+          </Button>
         </Box>
         <Box sx={{ overflow: "auto", width: { sm: "100%" } }}>
           <Table

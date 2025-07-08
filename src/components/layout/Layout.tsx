@@ -28,10 +28,9 @@ const Layout = () => {
         <Container
           sx={{
             padding: "0px !important",
-            [theme.breakpoints.up("sm")]: {
-              maxWidth: "100%"
-            },
-            width: "calc(100vw - 6px)"
+            maxWidth: "100% !important",
+            width: "100% !important",
+            margin: "0 !important"
           }}
         >
           <Outlet />
