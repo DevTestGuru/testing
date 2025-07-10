@@ -66,6 +66,12 @@ const XDaiContact = (() => {
 });
 
 module.exports = function (req, res, next) {
+  // Development bypass
+  if (process.env.NODE_ENV === 'development' && process.env.BYPASS_AUTH === 'true') {
+    req.user = { id: 'dev-user-123' }; // Mock user
+    return next();
+  }
+
   // Get token from header
   const token = req.header('x-auth-token');
 
