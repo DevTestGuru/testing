@@ -1,7 +1,8 @@
 const express = require('express');
 const path = require('path');
 require('dotenv').config();
-
+const basicAuth = require('./server/middleware/basicAuth');
+const cors = require('cors');
 const app = express();
 
 // Connect Database
@@ -10,11 +11,27 @@ const app = express();
 // Init Middleware
 app.use(express.json());
 
+app.use(cors());
+
 // Define Routes
+app.use('/v1/api/notes', basicAuth, require('./server/routes/notes/notes'));
+
 app.use('/api/users', require('./server/routes/api/users'));
 app.use('/api/auth', require('./server/routes/api/auth'));
 app.use('/api/profile', require('./server/routes/api/profile'));
 app.use('/api/posts', require('./server/routes/api/posts'));
+
+
+// Error handling middleware
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).json({
+    success: false,
+    error: 'Something went wrong!',
+    message: err.message
+  });
+});
+
 
 // Serve static assets in production
 if (process.env.NODE_ENV === 'production') {

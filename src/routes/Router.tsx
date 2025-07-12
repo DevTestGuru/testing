@@ -1,6 +1,7 @@
 import React, { lazy } from "react";
 import { Navigate } from "react-router-dom";
 import Loadable from "../components/loadable/Loadable";
+import NotesApp from "../components/notes/NotesApp";
 
 const Layout = Loadable(lazy(() => import("../components/layout/Layout")));
 const Dashboard = Loadable(lazy(() => import("../views/dashboard/Dashboard")));
@@ -22,6 +23,10 @@ const Router = [
       { path: "/auth/404", exact: true, element: <Notfound /> },
       { path: "*", element: <Navigate to="/auth/404" /> }
     ]
+  },
+  {
+    path: "/notes",
+    element: <NotesApp />
   }
 ];
 
