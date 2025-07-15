@@ -1,3 +1,4 @@
+import ProductPage from "./views/product-page";
 import React from "react";
 import "./App.css";
 import "./assets/css/globals.css";
@@ -12,7 +13,8 @@ function App() {
   const routing = useRoutes(Router);
   return (
     <ThemeProvider theme={theme}>
-      <div className="App">{routing}</div>
+      {/*<div className="App">{routing}</div>*/}
+      <ProductPage />
     </ThemeProvider>
   );
 }
