@@ -8,8 +8,12 @@ const { check, validationResult } = require('express-validator');
 // @route    POST api/notes
 // @desc     Create a Note
 // @access   Private
-router.post('/', (req, res) => {
+router.post('/', check('text', 'Text is required').notEmpty(), (req, res) => {
   try {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
     const newNote = new Note({
       text: req.body.text,
       userId: req.body.userId,
@@ -22,7 +26,7 @@ router.post('/', (req, res) => {
 
     console.log(note);
 
-    return res.json(note.id);
+    return res.json(note);
   } catch (err) {
     console.error(err.message);
     return res.status(500).send(err);
@@ -61,7 +65,7 @@ router.delete('/:id', (req, res) => {
     if (!note) return res.status(404).send('Note Not Found');
     if (!note.remove()) return res.status(500).send('remove failed');
 
-    return res.send('Note is removed');
+    return res.send('Note removed');
   } catch (err) {
     return res.status(500).send(err);
   }
