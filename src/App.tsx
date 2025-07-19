@@ -7,12 +7,13 @@ import { CssBaseline, ThemeProvider, createTheme } from "@mui/material";
 import { useRoutes } from "react-router-dom";
 import Router from "./routes/Router";
 import theme from "./theme";
+import ProductLanding from "./views/product/ProductLanding";
 
 function App() {
   const routing = useRoutes(Router);
   return (
     <ThemeProvider theme={theme}>
-      <div className="App">{routing}</div>
+      <ProductLanding />
     </ThemeProvider>
   );
 }
