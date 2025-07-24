@@ -1,8 +1,13 @@
-import React, { FC } from "react";
+import React, { FC, useEffect, useState } from "react";
 import Box from "@mui/material/Box";
 import { navigations } from "./navigation.data";
 import { Link } from "@mui/material";
 import { useLocation } from "react-router-dom";
+declare global {
+  interface Window {
+    ethereum?: any;
+  }
+}
 
 type NavigationData = {
   path: string;
@@ -13,6 +18,48 @@ const Navigation: FC = () => {
   const location = useLocation();
   const currentPath = location.pathname;
 
+  const [account, setAccount] = useState<string | null>(null);
+
+  const connectWallet = async () => {
+    if (typeof window.ethereum === "undefined") {
+      alert("MetaMask is not installed. Please install it to use this app.");
+      return;
+    }
+
+    try {
+      const accounts = await window.ethereum.request({
+        method: "eth_requestAccounts"
+      });
+      setAccount(accounts[0]);
+    } catch (error) {
+      console.error("User rejected the request:", error);
+    }
+  };
+
+  useEffect(() => {
+    if (!window.ethereum) return;
+
+    const handleAccountsChanged = (accounts: string[]) => {
+      if (accounts.length === 0) {
+        setAccount(null);
+      } else {
+        setAccount(accounts[0]);
+      }
+    };
+
+    const handleChainChanged = () => {
+      window.location.reload();
+    };
+
+    window.ethereum.on("accountsChanged", handleAccountsChanged);
+    window.ethereum.on("chainChanged", handleChainChanged);
+
+    return () => {
+      window.ethereum.removeListener("accountsChanged", handleAccountsChanged);
+      window.ethereum.removeListener("chainChanged", handleChainChanged);
+    };
+  }, []);
+
   return (
     <Box
       sx={{
@@ -22,7 +69,7 @@ const Navigation: FC = () => {
         flexDirection: { xs: "column", lg: "row" }
       }}
     >
-      {navigations.map(({ path: destination, label }: NavigationData) =>
+      {navigations.map(({ path: destination, label }: NavigationData) => (
         <Box
           key={label}
           component={Link}
@@ -42,7 +89,7 @@ const Navigation: FC = () => {
             px: { xs: 0, lg: 3 },
             mb: { xs: 3, lg: 0 },
             fontSize: "20px",
-            ...destination === "/" && { color: "primary.main" },
+            ...(destination === "/" && { color: "primary.main" }),
             "& > div": { display: "none" },
             "&.current>div": { display: "block" },
             "&:hover": {
@@ -63,8 +110,11 @@ const Navigation: FC = () => {
           </Box>
           {label}
         </Box>
-      )}
+      ))}
+
+      {/* Connect Wallet Button */}
       <Box
+        onClick={connectWallet}
         sx={{
           position: "relative",
           color: "white",
@@ -77,7 +127,7 @@ const Navigation: FC = () => {
           justifyContent: "center",
           px: { xs: 0, lg: 3 },
           mb: { xs: 3, lg: 0 },
-          fontSize: "24px",
+          fontSize: "20px",
           lineHeight: "6px",
           width: "324px",
           height: "45px",
@@ -85,7 +135,7 @@ const Navigation: FC = () => {
           backgroundColor: "#00dbe3"
         }}
       >
-        Connect Wallet
+        {account ? `Wallet: ${account.slice(0, 6)}...${account.slice(-4)}` : "Connect Wallet"}
       </Box>
     </Box>
   );
